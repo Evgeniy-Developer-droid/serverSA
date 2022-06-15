@@ -1,0 +1,21 @@
+<div class="notify-wrap w-100 h-100">
+    <input type="hidden" value="0" id="latitude">
+    <input type="hidden" value="0" id="longitude">
+    {% csrf_token %}
+    <div id="map_notify" class=""></div>
+    <textarea class="from-control w-100" id="description" rows="6" placeholder="Describe situation"></textarea>
+    <div class="files">
+        <div class="file_input box_file" data-id="">
+            <div class="sa_icon sa_upload">
+                <i class="bi bi-cloud-arrow-up"></i>
+            </div>
+            <input type="file" accept="video/*,image/*" class="d-none">
+        </div>
+        <div class="new_file box_file">
+            <div class="sa_icon sa_add">
+                <i class="bi bi-plus-circle"></i>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary m-2 col" id="publish">Add</button>
+</div>
