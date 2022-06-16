@@ -6,6 +6,15 @@ var markersObjects = [];
 
 jQuery(document).ready(function($){
 
+	$('.burger').click(function (){
+		$('.menu').removeClass('close').addClass('open')
+		$('.menu-content').removeClass('close').addClass('open')
+	});
+	$('.close-menu').click(function (){
+		$('.menu').removeClass('open').addClass('close')
+		$('.menu-content').removeClass('open').addClass('close')
+	});
+
 	$('#map-btn').click(function (){
 		$('#new-event').removeClass('btn-info').addClass('btn-outline-info')
 		$(this).removeClass('btn-outline-info').addClass('btn-info')

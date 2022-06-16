@@ -3,9 +3,10 @@
   z-index: 9;
   left: 0;
   top: 0;
-  background: #1c3950;
+  background: #373e44;
   width: 350px;
-  height: 88vh;
+  padding: 5px;
+  opacity: 0;
   margin: 1rem;
   border-radius: 6px;
 }
@@ -22,12 +23,14 @@
 .event-wrap.open {
   width: 600px;
   left: 355px;
+  opacity: 1;
   transition: 1s;
 }
 
 .event-wrap.close {
   width: 350px;
   left: 0;
+  opacity: 0;
   transition: 1s;
 }
 
@@ -37,7 +40,7 @@
   width: 350px;
   position: relative;
   z-index: 10;
-  background-color: black;
+  background-color: #121212;
 }
 
 .list-wrap.open {

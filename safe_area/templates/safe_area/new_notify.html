@@ -1,8 +1,46 @@
-<div class="notify-wrap w-100 h-100">
+<div class="notify-wrap">
     <input type="hidden" value="0" id="latitude">
     <input type="hidden" value="0" id="longitude">
     {% csrf_token %}
     <div id="map_notify" class=""></div>
+    <div class="type-of-situation d-flex flex-wrap justify-content-around align-items-center m-2">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="n" id="r1">
+            <label class="form-check-label text-bg-danger rounded-3 p-1" for="r1">
+                Murder
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="n" id="r2">
+            <label class="form-check-label text-bg-primary rounded-3  p-1" for="r2">
+                Accident
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="n" id="r3">
+            <label class="form-check-label text-bg-warning rounded-3  p-1" for="r3">
+                Fight
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="n" id="r4">
+            <label class="form-check-label text-bg-info rounded-3  p-1" for="r4">
+                Theft
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="n" id="r5">
+            <label class="form-check-label text-bg-success rounded-3  p-1" for="r5">
+                Shooting
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="n" id="r6" checked>
+            <label class="form-check-label text-bg-light rounded-3  p-1" for="r6">
+                Other
+            </label>
+        </div>
+    </div>
     <textarea class="from-control w-100" id="description" rows="6" placeholder="Describe situation"></textarea>
     <div class="files">
         <div class="file_input box_file" data-id="">

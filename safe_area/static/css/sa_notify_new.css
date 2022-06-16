@@ -1,6 +1,7 @@
 .new-event-container.open{
 	opacity: 1;
 	transition: 1s;
+	width: 100%;
 }
 .new-event-container.close{
 	opacity: 0;
@@ -11,13 +12,13 @@
 	opacity: 0;
 	padding: 4px;
 }
-.notify-wrap{
-
+.notify-wrap label{
+	font-size: 14px;
 }
 
 .notify{
 	padding: 20px;
-	background-color: #000;
+	/*background-color: #000;*/
 }
 #map_notify{
 	height: 300px;
