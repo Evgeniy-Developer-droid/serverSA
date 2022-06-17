@@ -142,7 +142,8 @@ jQuery(document).ready(function($){
 			lat: $("#latitude").val(),
 			lon: $("#longitude").val(),
 			description: $('#description').val(),
-			media_ids: ids
+			media_ids: ids,
+			type_of_situation: $('.form-check-input:checked').val()
 		}
 		$.ajax({
 			url: urls.new_event,

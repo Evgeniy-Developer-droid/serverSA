@@ -1,4 +1,11 @@
-const icon_marker = document.getElementById('marker_icon').value;
+const markers = {
+	'murder': document.getElementById('red_icon').value,
+	'accident': document.getElementById('blue_icon').value,
+	'fight': document.getElementById('yellow_icon').value,
+	'theft': document.getElementById('okean_icon').value,
+	'shooting': document.getElementById('green_icon').value,
+	'other': document.getElementById('white_icon').value,
+}
 var map;
 var zoom = 5;
 var events = [];
@@ -34,9 +41,9 @@ jQuery(document).ready(function($){
 	function render_list(data){
 		let html = "";
 		data.forEach(val=>{
-			let images = val.media.filter(vl => vl.extension === 'image');
-			let thumbnail = images[0]?.file || "/static/img/no-image.webp";
-			html += `<div class="item">
+			let thumbnail = val.media.file || "/static/img/no-image.webp";
+			html += `<div class="item position-relative">
+				<span class="position-absolute type ${val.type_of_situation}" title="${val.type_of_situation}"></span>
             	<div class="img  col-4" style="background-image: url('${thumbnail}');"></div>
             	<div class="meta col">
             		<div class="hidd"><p>${val.description}</p></div>
@@ -64,7 +71,7 @@ jQuery(document).ready(function($){
 			const marker = new google.maps.Marker({
 				position: events[i].coord,
 				map: map,
-				icon: icon_marker
+				icon: markers[events[i].type]
 			});
 			marker.addListener("click", () => {
 				infowindow.open({
@@ -93,6 +100,7 @@ jQuery(document).ready(function($){
 				events = []
 				data.forEach(val=>{
 					events.push({
+						type: val.type_of_situation,
 						content: `<div>${val.description}</div>`,
 						coord:{
 							lat: val.lat,

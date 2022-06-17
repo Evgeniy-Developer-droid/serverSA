@@ -66,26 +66,26 @@ main{
   cursor: pointer;
 }
 /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    scrollbar-width: auto;
-    scrollbar-color: #595959 #292929;
-  }
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #595959 #292929;
+}
 
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 10px;
-  }
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
 
-  *::-webkit-scrollbar-track {
-    background: #292929;
-  }
+*::-webkit-scrollbar-track {
+  background: #292929;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: #595959;
-    border-radius: 13px;
-    border: 1px none #ffffff;
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: #595959;
+  border-radius: 13px;
+  border: 1px none #ffffff;
+}
 
 .list-wrap, .map-wrap{
   min-height: 85vh;
@@ -128,8 +128,63 @@ main{
   display: flex;
   align-items: flex-start;
   padding: 5px;
-      background-color: #1e1e1e;
-    box-shadow: 0 0 6px olivedrab;
+  background-color: #1e1e1e;
+}
+.type{
+  top: 6px;
+  right: 6px;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.type.murder{
+  box-shadow: 0 0 6px red;
+  background-color: red;
+}
+.type.murder:hover{
+  box-shadow: 0 0 20px red;
+  transition: 1s;
+}
+.type.fight{
+  box-shadow: 0 0 6px yellow;
+  background-color: yellow;
+}
+.type.fight:hover{
+  box-shadow: 0 0 20px yellow;
+  transition: 1s;
+}
+.type.theft{
+  box-shadow: 0 0 6px #00f8ff;
+  background-color: #00f8ff;
+}
+.type.theft:hover{
+  box-shadow: 0 0 20px #00f8ff;
+  transition: 1s;
+}
+.type.shooting{
+  box-shadow: 0 0 6px lawngreen;
+  background-color: lawngreen;
+}
+.type.shooting:hover{
+  box-shadow: 0 0 20px lawngreen;
+  transition: 1s;
+}
+.type.accident{
+  box-shadow: 0 0 6px blue;
+  background-color: blue;
+}
+.type.accident:hover{
+  box-shadow: 0 0 20px blue;
+  transition: 1s;
+}
+.type.other{
+  box-shadow: 0 0 6px white;
+  background-color: white;
+}
+.type.other:hover{
+  box-shadow: 0 0 20px white;
+  transition: 1s;
 }
 .item .img{
   width: 80px;
@@ -160,9 +215,9 @@ main{
   margin-left: 3px;
 }
 .t_li .media .photo{
-    font-size: 12px;
-    color: white;
-    margin-right: 5px;
+  font-size: 12px;
+  color: white;
+  margin-right: 5px;
 }
 .t_li .media .video{
   font-size: 12px;
@@ -189,5 +244,5 @@ main{
 }
 
 .keys{
-    top: -40px;
+  top: -40px;
 }

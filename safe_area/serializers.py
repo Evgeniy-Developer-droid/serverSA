@@ -27,7 +27,11 @@ class EventSerializer(serializers.ModelSerializer):
         return obj.description[:20]+'...' if obj.description else "..."
 
     def get_media(self, obj):
-        return [item for item in EventMediaSerializer(EventMedia.objects.filter(event=obj.pk), many=True).data]
+        instance = EventMedia.objects.filter(event=obj.pk, extension='image').first()
+        if instance:
+            return EventMediaSerializer(instance).data
+        return {}
+
 
     def get_meta(self, obj):
         return {
