@@ -1,7 +1,12 @@
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
-from .serializers import EventSerializer, EventMediaSerializer
+from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, RetrieveAPIView
+from .serializers import EventSerializer, EventMediaSerializer, SingleEventSerializer
 from .models import Event, EventMedia
+
+
+class GetEvent(RetrieveAPIView):
+    serializer_class = SingleEventSerializer
+    queryset = Event.objects.all()
 
 
 class GetEvents(ListAPIView):

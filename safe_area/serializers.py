@@ -10,6 +10,28 @@ class EventMediaSerializer(serializers.ModelSerializer):
         extra_kwargs = {'event': {'write_only': True}}
 
 
+class SingleEventSerializer(serializers.ModelSerializer):
+    media = serializers.SerializerMethodField()
+    meta = serializers.SerializerMethodField()
+    timestamp = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+    def get_timestamp(self, obj):
+        return obj.timestamp.strftime("%d/%m/%Y %H:%M")
+
+    def get_media(self, obj):
+        return [item for item in EventMediaSerializer(EventMedia.objects.filter(event=obj.pk), many=True).data]
+
+    def get_meta(self, obj):
+        return {
+            'image': EventMedia.objects.filter(event=obj.pk, extension='image').count(),
+            'video': EventMedia.objects.filter(event=obj.pk, extension='video').count()
+        }
+
+
 class EventSerializer(serializers.ModelSerializer):
     media = serializers.SerializerMethodField()
     meta = serializers.SerializerMethodField()

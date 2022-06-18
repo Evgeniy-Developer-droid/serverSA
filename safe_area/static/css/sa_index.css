@@ -246,3 +246,7 @@ main{
 .keys{
   top: -40px;
 }
+
+.info-window img{
+  width: 100px;
+}

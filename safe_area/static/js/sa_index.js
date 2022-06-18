@@ -10,8 +10,23 @@ var map;
 var zoom = 5;
 var events = [];
 var markersObjects = [];
+var infowindow = null;
 
 jQuery(document).ready(function($){
+
+	$(document).on('mouseenter', '#listing .item', function (){
+		let elem = $(this);
+		let marker = markersObjects.filter(val => val.id === elem.data('id'))
+		if(marker.length !== 0){
+			map.panTo(marker[0].marker.getPosition());
+			new google.maps.event.trigger( marker[0].marker, 'click' );
+		}
+	})
+
+	$(document).on('click', '.map-btn-info-window', function (){
+		let id = $(this).data('id');
+		$('#listing').find(`[data-id='${id}']`).click();
+	});
 
 	$('.burger').click(function (){
 		$('.menu').removeClass('close').addClass('open')
@@ -29,10 +44,19 @@ jQuery(document).ready(function($){
 		$('#map').removeClass('close').addClass('open')
 	});
 
+	const infoWindowContent = (data) => {
+		let image = data.media?.file || "/static/img/no-image.webp";
+		return `<div class="info-window">
+					<img src="${image}" alt="">
+					<p>${data.desc_short}</p>
+					<div class="btn btn-sm btn-dark w-100 map-btn-info-window" data-id="${data.id}">View</div>
+			</div>`
+	}
+
 	function deleteMarkers() {
 		if (markersObjects) {
 			for (i in markersObjects) {
-				markersObjects[i].setMap(null);
+				markersObjects[i].marker.setMap(null);
 			}
 			markersObjects.length = 0;
 		}
@@ -42,7 +66,7 @@ jQuery(document).ready(function($){
 		let html = "";
 		data.forEach(val=>{
 			let thumbnail = val.media.file || "/static/img/no-image.webp";
-			html += `<div class="item position-relative">
+			html += `<div class="item position-relative" data-id="${val.id}" data-lat="${val.lat}" data-lon="${val.lon}">
 				<span class="position-absolute type ${val.type_of_situation}" title="${val.type_of_situation}"></span>
             	<div class="img  col-4" style="background-image: url('${thumbnail}');"></div>
             	<div class="meta col">
@@ -65,22 +89,25 @@ jQuery(document).ready(function($){
 	}
 	function render_markers(){
 		for(let i = 0; i < events.length; i++){
-			const infowindow = new google.maps.InfoWindow({
-				content: events[i].content,
-			});
 			const marker = new google.maps.Marker({
 				position: events[i].coord,
 				map: map,
 				icon: markers[events[i].type]
 			});
 			marker.addListener("click", () => {
+				if (infowindow) {
+					infowindow.close();
+				}
+				infowindow = new google.maps.InfoWindow({
+					content: events[i].content,
+				});
 				infowindow.open({
 					anchor: marker,
 					map,
 					shouldFocus: false,
 				});
 			});
-			markersObjects.push(marker)
+			markersObjects.push({'id':events[i].id, 'marker': marker})
 		}
 	}
 
@@ -100,8 +127,9 @@ jQuery(document).ready(function($){
 				events = []
 				data.forEach(val=>{
 					events.push({
+						id: val.id,
 						type: val.type_of_situation,
-						content: `<div>${val.description}</div>`,
+						content: infoWindowContent(val),
 						coord:{
 							lat: val.lat,
 							lng: val.lon
@@ -134,7 +162,7 @@ jQuery(document).ready(function($){
 
 
 		google.maps.event.addListener(map, 'dragend', function () {
-			console.log(this.getCenter().lat(), this.getCenter().lng(), this.zoom)
+			// console.log(this.getCenter().lat(), this.getCenter().lng(), this.zoom)
 			deleteMarkers()
 			get_events()
 		});
