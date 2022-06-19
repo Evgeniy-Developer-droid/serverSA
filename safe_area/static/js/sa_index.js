@@ -11,6 +11,7 @@ var zoom = 5;
 var events = [];
 var markersObjects = [];
 var infowindow = null;
+var defaultCoord = {'lat':49.76, 'lon':21.13}
 
 jQuery(document).ready(function($){
 
@@ -112,9 +113,9 @@ jQuery(document).ready(function($){
 	}
 
 
-	function get_events(){
+	function get_events(lat, lon, zoom){
 		$.ajax({
-			url: urls.get_events,
+			url: urls.get_events+`?lat=${lat}&lon=${lon}&zoom=${zoom}`,
 			method: 'GET',
 			beforeSend: function (){
 				$('#listing').addClass('d-flex flex-column align-items-center justify-content-center');
@@ -148,7 +149,7 @@ jQuery(document).ready(function($){
 			mapId: 'b8ac68d09a125f13'
 		});
 
-		initialLocation = new google.maps.LatLng(49.76, 21.13);
+		initialLocation = new google.maps.LatLng(defaultCoord.lat, defaultCoord.lon);
 		map.setCenter(initialLocation);
 
 		if (navigator.geolocation) {
@@ -156,18 +157,23 @@ jQuery(document).ready(function($){
 				initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				map.setCenter(initialLocation);
 				zoom = 15;
+				defaultCoord.lat = position.coords.latitude
+				defaultCoord.lon = position.coords.longitude
 				map.setZoom(zoom);
+				get_events(position.coords.latitude, position.coords.longitude, zoom);
 			});
+		}else{
+			get_events(defaultCoord.lat, defaultCoord.lon, zoom)
 		}
 
 
 		google.maps.event.addListener(map, 'dragend', function () {
 			// console.log(this.getCenter().lat(), this.getCenter().lng(), this.zoom)
 			deleteMarkers()
-			get_events()
+			get_events(this.getCenter().lat(), this.getCenter().lng(), this.zoom)
 		});
 	}
 
 	initialize();
-	get_events();
+
 })
