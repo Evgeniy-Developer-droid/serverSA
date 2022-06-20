@@ -5,6 +5,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, 
 from .serializers import EventSerializer, EventMediaSerializer, SingleEventSerializer, FeedbackSerializer
 from .models import Event, EventMedia, Feedback
 from math import pi, cos
+from django.conf import settings
 
 
 class PostFeedback(CreateAPIView):
@@ -33,10 +34,16 @@ class GetEvents(ListAPIView):
         zoom = request.GET.get('zoom', 0)
         distance = self.get_distance(int(zoom), float(lat))
         table_name = Event.objects.model._meta.db_table
-        query = """SELECT * FROM (SELECT *, (((acos(sin(({0} * pi()/ 180)) * sin((`lat` * pi()/ 180)) 
-        + cos(({0} * pi()/ 180)) * cos((`lat` * pi()/ 180)) * cos((({1} - `lon`)* pi()/ 180))))* 180 / pi()) 
-        * 60 * 1.1515 * 1.609344) as distance 
-            FROM `{3}` ) myTable WHERE distance <= {2} ORDER BY `viewed`, `timestamp`""".format(lat, lon, distance, table_name)
+        if settings.DEBUG:
+            query = """SELECT * FROM (SELECT *, (((acos(sin(({0} * pi()/ 180)) * sin((`lat` * pi()/ 180)) 
+            + cos(({0} * pi()/ 180)) * cos((`lat` * pi()/ 180)) * cos((({1} - `lon`)* pi()/ 180))))* 180 / pi()) 
+            * 60 * 1.1515 * 1.609344) as distance 
+                FROM `{3}` ) myTable WHERE distance <= {2} ORDER BY `viewed`, `timestamp`""".format(lat, lon, distance, table_name)
+        else:
+            query = """SELECT * FROM (SELECT *, (((acos(sin(({0} * pi()/ 180)) * sin((lat * pi()/ 180)) 
+                        + cos(({0} * pi()/ 180)) * cos((lat * pi()/ 180)) * cos((({1} - lon)* pi()/ 180))))* 180 / pi()) 
+                        * 60 * 1.1515 * 1.609344) as distance 
+                            FROM {3} ) myTable WHERE distance <= {2} ORDER BY viewed, timestamp""".format(lat, lon, distance, table_name)
         if int(zoom) <= 10:
             query += " LIMIT "+str(100*int(zoom))
         events = Event.objects.raw(query)
