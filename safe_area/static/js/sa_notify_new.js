@@ -7,6 +7,7 @@ jQuery(document).ready(function($){
 		e.preventDefault()
 		map = new google.maps.Map(document.getElementById("map_notify"), {
 			zoom: 5,
+			minZoom: 4,
 			mapId: 'b8ac68d09a125f13'
 		});
 

@@ -29,15 +29,6 @@ jQuery(document).ready(function($){
 		$('#listing').find(`[data-id='${id}']`).click();
 	});
 
-	$('.burger').click(function (){
-		$('.menu').removeClass('close').addClass('open')
-		$('.menu-content').removeClass('close').addClass('open')
-	});
-	$('.close-menu').click(function (){
-		$('.menu').removeClass('open').addClass('close')
-		$('.menu-content').removeClass('open').addClass('close')
-	});
-
 	$('#map-btn').click(function (){
 		$('#new-event').removeClass('btn-info').addClass('btn-outline-info')
 		$(this).removeClass('btn-outline-info').addClass('btn-info')
@@ -146,6 +137,7 @@ jQuery(document).ready(function($){
 	function initialize(){
 		map = new google.maps.Map(document.getElementById("map"), {
 			zoom: zoom,
+			minZoom: 4,
 			mapId: 'b8ac68d09a125f13'
 		});
 

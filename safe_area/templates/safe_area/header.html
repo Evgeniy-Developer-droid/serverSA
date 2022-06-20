@@ -5,14 +5,16 @@
 <div class="menu position-fixed close">
     <div class="position-relative"><div class="position-absolute close-menu"><i class="bi bi-arrow-right-circle"></i></div></div>
     <div class="menu-content close p-2 d-flex justify-content-between flex-column align-items-center">
-        <div class="logo d-flex align-items-center justify-content-center mt-1"><p class="h4" style="color: #ff0098">Save Area</p></div>
+        <div class="logo d-flex align-items-center justify-content-center mt-1"><p class="h4">
+            <a href="{% url 'home' %}"  style="color: #ff0098">Save Area</a>
+        </p></div>
 
         <ul class="nav flex-column m-2">
             <li class="nav-item">
-                <a class="nav-link text-light" aria-current="page" href="#"><i class="bi bi-file-earmark-person-fill"></i> About</a>
+                <a class="nav-link text-light" aria-current="page" href="{% url 'about' %}"><i class="bi bi-file-earmark-person-fill"></i> About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" aria-current="page" href="#"><i class="bi bi-chat-text-fill"></i> Contact us</a>
+                <a class="nav-link text-light" aria-current="page" href="{% url 'contact_us' %}"><i class="bi bi-chat-text-fill"></i> Contact us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-light" aria-current="page" href="#"><i class="bi bi-star-fill"></i> Rate the site</a>

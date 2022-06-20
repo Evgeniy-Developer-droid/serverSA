@@ -1,6 +1,12 @@
-from .models import Event, EventMedia
+from .models import Event, EventMedia, Feedback
 from rest_framework import serializers
 from datetime import datetime
+
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = '__all__'
 
 
 class EventMediaSerializer(serializers.ModelSerializer):
