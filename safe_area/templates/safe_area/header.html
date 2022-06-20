@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <div class="position-fixed burger">
     <i class="bi bi-list"></i>
@@ -11,16 +12,13 @@
 
         <ul class="nav flex-column m-2">
             <li class="nav-item">
-                <a class="nav-link text-light" aria-current="page" href="{% url 'about' %}"><i class="bi bi-file-earmark-person-fill"></i> About</a>
+                <a class="nav-link text-light" aria-current="page" href="{% url 'about' %}"><i class="bi bi-file-earmark-person-fill"></i> {% trans 'About' %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" aria-current="page" href="{% url 'contact_us' %}"><i class="bi bi-chat-text-fill"></i> Contact us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" aria-current="page" href="#"><i class="bi bi-star-fill"></i> Rate the site</a>
+                <a class="nav-link text-light" aria-current="page" href="{% url 'contact_us' %}"><i class="bi bi-chat-text-fill"></i> {% trans 'Contact us' %}</a>
             </li>
         </ul>
 
-        <a href="#" class="donate btn btn-outline-success w-50 m-3"><i class="bi bi-coin"></i> Donate</a>
+{#        <a href="#" class="donate btn btn-outline-success w-50 m-3"><i class="bi bi-coin"></i> Donate</a>#}
     </div>
 </div>

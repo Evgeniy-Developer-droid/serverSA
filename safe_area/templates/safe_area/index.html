@@ -31,6 +31,7 @@
 <input type="hidden" value="{% static 'img/green.png' %}" id="green_icon">
 <input type="hidden" value="{% static 'img/white.png' %}" id="white_icon">
 <input type="hidden" value="{% static 'img/okean.png' %}" id="okean_icon">
+{% load i18n %}
 {% include 'safe_area/header.html' %}
 <main>
     <div class="d-flex flex-xs-wrap-reverse flex-sm-wrap-reverse flex-wrap-reverse flex-md-wrap flex-lg-wrap">
@@ -40,12 +41,12 @@
 
             </div>
             {% include 'safe_area/event_view.html' %}
-            <div class="btn btn-danger listing-btn">Listing</div>
+            <div class="btn btn-danger listing-btn">{% trans 'Listing' %}</div>
         </div>
         <div class="col map-wrap position-relative">
             <div class="position-absolute keys">
-                <div class="btn btn-info" id="map-btn">Map</div>
-                <div class="btn btn-outline-info" id="new-event">New Event</div>
+                <div class="btn btn-info" id="map-btn">{% trans 'Map' %}</div>
+                <div class="btn btn-outline-info" id="new-event">{% trans 'New Event' %}</div>
             </div>
             <div id="map" class="position-absolute open"></div>
             <div class="position-absolute new-event-container close">

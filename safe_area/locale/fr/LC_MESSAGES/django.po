@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-20 22:08+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/safe_area/about.html:23 templates/safe_area/header.html:15
+msgid "About"
+msgstr "À propos de"
+
+#: templates/safe_area/contact_us.html:30 templates/safe_area/header.html:18
+msgid "Contact us"
+msgstr "Contactez-nous"
+
+#: templates/safe_area/contact_us.html:35
+msgid "Name"
+msgstr "Nom"
+
+#: templates/safe_area/contact_us.html:36
+msgid "John Down"
+msgstr "John Down"
+
+#: templates/safe_area/contact_us.html:39
+msgid "Email address"
+msgstr "Adresse e-mail"
+
+#: templates/safe_area/contact_us.html:43
+msgid "Text"
+msgstr "Texte"
+
+#: templates/safe_area/contact_us.html:47
+msgid "Send"
+msgstr "Envoyer"
+
+#: templates/safe_area/index.html:44
+msgid "Listing"
+msgstr "Référencement"
+
+#: templates/safe_area/index.html:48
+msgid "Map"
+msgstr "Carte"
+
+#: templates/safe_area/index.html:49
+msgid "New Event"
+msgstr "Nouvel évènement"
+
+#: templates/safe_area/new_notify.html:11
+msgid "Murder"
+msgstr "Meurtre"
+
+#: templates/safe_area/new_notify.html:17
+msgid "Accident"
+msgstr "Accident"
+
+#: templates/safe_area/new_notify.html:23
+msgid "Fight"
+msgstr "Lutte"
+
+#: templates/safe_area/new_notify.html:29
+msgid "Theft"
+msgstr "Vol"
+
+#: templates/safe_area/new_notify.html:35
+msgid "Shooting"
+msgstr "Tournage"
+
+#: templates/safe_area/new_notify.html:41
+msgid "Other"
+msgstr "Autre"
+
+#: templates/safe_area/new_notify.html:45
+msgid "Describe situation"
+msgstr "Décrivez la situation"
+
+#: templates/safe_area/new_notify.html:59
+msgid "Add"
+msgstr "Ajouter"
+
+#: views.py:15
+msgid ""
+"Welcome to our website!\n"
+"\tThe site is intended for everyone who cares about their safety. On the "
+"site you can get acquainted with an interactive map that displays recent "
+"events and the situation around you. You can also create an event and "
+"thereby warn others about a danger or inform about a situation. All events "
+"you create are completely anonymous.\n"
+"\tFor any questions, you can contact me using the Linkedin social network, "
+"Gmail or using the contact form on the site.\n"
+"\tThank you for your visit! Take care of yourself!"
+msgstr ""
+"Bienvenue sur notre site!"
+"Le site est destiné à tous ceux qui se soucient de leur sécurité. Sur le site, vous pouvez vous "
+"familiariser avec une carte interactive qui affiche les événements récents et la situation autour de vous. "
+"Vous pouvez également créer un événement et ainsi avertir les autres d'un danger ou informer d'une situation. Tous les "
+"événements que vous créez sont totalement anonymes."
+"Pour toute question, vous pouvez me contacter via le réseau social Linkedin, Gmail ou via le formulaire de contact du site."
+"Merci pour votre visite! Prends soin de toi!"

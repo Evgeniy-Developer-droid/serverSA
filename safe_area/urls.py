@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, about, contact_us, create_random_events
+from .views import index, about, contact_us
 from .api import GetEvents, PostEvent, PostEventMedia, DeleteEventMedia, GetEvent, PostFeedback
 
 urlpatterns = [
@@ -15,5 +15,5 @@ urlpatterns = [
 
     path('api/send-feedback', PostFeedback.as_view(), name='api-send-feedback'),
 
-    path('create-random-events/<int:number>', create_random_events)
+    # path('create-random-events/<int:number>', create_random_events)
 ]

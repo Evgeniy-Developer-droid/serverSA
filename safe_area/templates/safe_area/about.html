@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -19,17 +20,30 @@
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col text-light">
-                <h2>{{ content.title }}</h2>
+                <h2>{% trans 'About' %}</h2>
                 <div class="line"></div>
                 <div class="opacity-animation-content">
-                    <p>{{ content.content }}</p>
+                    <p>{{ content }}</p>
+                </div>
+                <div class="opacity-animation-content d-flex justify-content-evenly flex-wrap">
+                    <div class="link-contact linkedin">
+                        <a href="https://www.linkedin.com/in/evgeny-grinchak/" class="text-decoration-none btn btn-outline-light">
+                            <i class="bi bi-linkedin text-primary"></i> <span>Linkedin</span>
+                        </a>
+                    </div>
+                    <div class="link-contact gmail">
+                        <a href="mailto:evgeniy.python.developer@gmail.com" class="text-decoration-none btn btn-outline-light">
+                            <i class="bi bi-envelope-fill text-danger"></i> <span>Gmail</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/other.js' %}" defer></script>
 </body>
 </html>
