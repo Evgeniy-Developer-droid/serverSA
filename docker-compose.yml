@@ -1,0 +1,62 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py makemigrations &&
+             python manage.py migrate &&
+             gunicorn serverSA.wsgi:application --bind 0.0.0.0:8000"
+    container_name: web_python
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    container_name: db_python
+    environment:
+      - POSTGRES_USER=root_user
+      - POSTGRES_PASSWORD=Eq4242DNe3l3qgn5
+      - POSTGRES_DB=safearea
+
+  nginx:
+    build: ./nginx
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    container_name: nginx_python
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - web
+
+  certbot:
+    image: certbot/certbot
+#    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+#    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

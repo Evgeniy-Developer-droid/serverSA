@@ -1,12 +1,13 @@
-
+import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-20rbuqi^otflesm8#5n0p713-kn22a5xs)3n*u8t522cl^9y13'
-DEBUG = True
+SECRET_KEY = os.environ.get("SECRET_KEY", "test-dev")
+DEBUG = bool(int(os.environ.get("DEBUG", default=1)))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://*.safe-area.com.ua', 'https://*.127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -52,11 +53,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'serverSA.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "127.0.0.1"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
