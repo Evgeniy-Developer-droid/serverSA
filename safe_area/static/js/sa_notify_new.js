@@ -15,6 +15,7 @@ jQuery(document).ready(function($){
 		map.setCenter(initialLocation);
 
 		function setMarker(){
+			console.log(lat, lng)
 			$("#latitude").val(lat);
 			$("#longitude").val(lng);
 			let marker = new google.maps.Marker({
@@ -31,18 +32,22 @@ jQuery(document).ready(function($){
 			});
 		}
 
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function (position) {
-				lat = position.coords.latitude;
-				lng = position.coords.longitude;
-				initialLocation = new google.maps.LatLng(lat, lng);
-				map.setCenter(initialLocation);
-				map.setZoom(15);
+		navigator.permissions.query({ name: 'geolocation' }).then(data=>{
+			if(data.state === 'granted'){
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function (position) {
+						lat = position.coords.latitude;
+						lng = position.coords.longitude;
+						initialLocation = new google.maps.LatLng(lat, lng);
+						map.setCenter(initialLocation);
+						map.setZoom(15);
+						setMarker();
+					});
+				}
+			}else{
 				setMarker();
-			});
-		}else{
-			setMarker();
-		}
+			}
+		})
 		$('#map-btn').removeClass('btn-info').addClass('btn-outline-info')
 		$(this).removeClass('btn-outline-info').addClass('btn-info')
 		$('#map').removeClass('open').addClass('close')
@@ -52,7 +57,7 @@ jQuery(document).ready(function($){
 
 	function deleteAllMedia() {
 		let url_arr = urls.delete_media.split('/');
-			url_arr.pop()
+		url_arr.pop()
 		$('.file_input').each(function (index){
 			let elem = $(this);
 			$.ajax({
@@ -154,7 +159,7 @@ jQuery(document).ready(function($){
 			},
 			data: JSON.stringify(data),
 			dataType: "json",
-        	contentType: "application/json",
+			contentType: "application/json",
 			success: function (data) {
 				$('.file_input').remove()
 				$('#description').val("");

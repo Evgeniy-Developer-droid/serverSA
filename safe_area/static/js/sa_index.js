@@ -144,19 +144,37 @@ jQuery(document).ready(function($){
 		initialLocation = new google.maps.LatLng(defaultCoord.lat, defaultCoord.lon);
 		map.setCenter(initialLocation);
 
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function (position) {
-				initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				map.setCenter(initialLocation);
-				zoom = 15;
-				defaultCoord.lat = position.coords.latitude
-				defaultCoord.lon = position.coords.longitude
-				map.setZoom(zoom);
-				get_events(position.coords.latitude, position.coords.longitude, zoom);
-			});
-		}else{
-			get_events(defaultCoord.lat, defaultCoord.lon, zoom)
-		}
+		navigator.permissions.query({ name: 'geolocation' }).then(data=>{
+			if(data.state === 'granted'){
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function (position) {
+						initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+						map.setCenter(initialLocation);
+						zoom = 15;
+						defaultCoord.lat = position.coords.latitude
+						defaultCoord.lon = position.coords.longitude
+						map.setZoom(zoom);
+						get_events(position.coords.latitude, position.coords.longitude, zoom);
+					});
+				}
+			}else{
+				get_events(defaultCoord.lat, defaultCoord.lon, zoom)
+			}
+		})
+
+		// if (navigator.geolocation) {
+		// 	navigator.geolocation.getCurrentPosition(function (position) {
+		// 		initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		// 		map.setCenter(initialLocation);
+		// 		zoom = 15;
+		// 		defaultCoord.lat = position.coords.latitude
+		// 		defaultCoord.lon = position.coords.longitude
+		// 		map.setZoom(zoom);
+		// 		get_events(position.coords.latitude, position.coords.longitude, zoom);
+		// 	});
+		// }else{
+		// 	get_events(defaultCoord.lat, defaultCoord.lon, zoom)
+		// }
 
 
 		google.maps.event.addListener(map, 'dragend', function () {
