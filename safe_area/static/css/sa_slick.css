@@ -48,6 +48,10 @@
   font-size: 1.5rem;
 }
 
+.arrow_sa i:hover {
+  color: white;
+}
+
 .l-arr, .l-arr-video {
   left: 30px;
 }

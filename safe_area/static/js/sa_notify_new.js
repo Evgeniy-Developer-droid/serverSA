@@ -8,14 +8,16 @@ jQuery(document).ready(function($){
 		map = new google.maps.Map(document.getElementById("map_notify"), {
 			zoom: 5,
 			minZoom: 4,
-			mapId: 'b8ac68d09a125f13'
+			mapId: 'b8ac68d09a125f13',
+			zoomControl: false,
+			mapTypeControl: false,
+			streetViewControl: false
 		});
 
 		let initialLocation = new google.maps.LatLng(lat, lng);
 		map.setCenter(initialLocation);
 
 		function setMarker(){
-			console.log(lat, lng)
 			$("#latitude").val(lat);
 			$("#longitude").val(lng);
 			let marker = new google.maps.Marker({
@@ -32,22 +34,19 @@ jQuery(document).ready(function($){
 			});
 		}
 
-		navigator.permissions.query({ name: 'geolocation' }).then(data=>{
-			if(data.state === 'granted'){
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function (position) {
-						lat = position.coords.latitude;
-						lng = position.coords.longitude;
-						initialLocation = new google.maps.LatLng(lat, lng);
-						map.setCenter(initialLocation);
-						map.setZoom(15);
-						setMarker();
-					});
-				}
-			}else{
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function (position) {
+				lat = position.coords.latitude;
+				lng = position.coords.longitude;
+				initialLocation = new google.maps.LatLng(lat, lng);
+				map.setCenter(initialLocation);
+				map.setZoom(15);
 				setMarker();
-			}
-		})
+			}, function (data) {
+				setMarker();
+			});
+		}
+
 		$('#map-btn').removeClass('btn-info').addClass('btn-outline-info')
 		$(this).removeClass('btn-outline-info').addClass('btn-info')
 		$('#map').removeClass('open').addClass('close')

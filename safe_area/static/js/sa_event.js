@@ -52,17 +52,18 @@ jQuery(document).ready(function ($) {
           for(let i = 0; i < videos.length; i++){
             $('.video-slider').append(`
               <div class="video-item">
-                    <video name='demo' controls>
+                    <video name='demo' width="300px" height="150px" controls>
                         <source src="${videos[i].file}"></source>
                     </video>
                 </div>
             `)
           }
-          $('.video-slider').css('display', 'block')
+          $('.video-slider').css('display', 'flex')
         }else{
           $('.video-slider').css('display', 'none')
         }
         $('.description-wrap').html(data.description)
+        $('#viewed').html(data.viewed)
         $('.event-wrap').removeClass('close').addClass('open')
       }
     })

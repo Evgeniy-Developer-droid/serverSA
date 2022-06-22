@@ -11,7 +11,7 @@ var zoom = 5;
 var events = [];
 var markersObjects = [];
 var infowindow = null;
-var defaultCoord = {'lat':49.76, 'lon':21.13}
+var Coord = {'lat':49.76, 'lon':21.13}
 
 jQuery(document).ready(function($){
 
@@ -28,6 +28,13 @@ jQuery(document).ready(function($){
 		let id = $(this).data('id');
 		$('#listing').find(`[data-id='${id}']`).click();
 	});
+
+	$('.filter-btn').click(function (){
+		$('.filter').removeClass('close-filter').addClass('open-filter');
+	})
+	$('.close-filter-btn').click(function (){
+		$('.filter').removeClass('open-filter').addClass('close-filter');
+	})
 
 	$('#map-btn').click(function (){
 		$('#new-event').removeClass('btn-info').addClass('btn-outline-info')
@@ -103,10 +110,25 @@ jQuery(document).ready(function($){
 		}
 	}
 
+	$('.filter input[name="start"], .filter input[name="end"], .filter input[type="checkbox"]').on('change', function (){
+		deleteMarkers()
+		get_events(Coord.lat, Coord.lon, zoom);
+	})
+
 
 	function get_events(lat, lon, zoom){
+		let parameters = ""
+		parameters += `&start=${$('.filter input[name="start"]').val()}`
+		parameters += `&end=${$('.filter input[name="end"]').val()}`
+		let types = []
+		$('.filter input[type="checkbox"]:checked').each(function (index, val){
+			types.push($(this).attr('id'))
+		})
+		if(types.length !== 0){
+			parameters += "&types="+types.join('|')
+		}
 		$.ajax({
-			url: urls.get_events+`?lat=${lat}&lon=${lon}&zoom=${zoom}`,
+			url: urls.get_events+`?lat=${lat}&lon=${lon}&zoom=${zoom}${parameters}`,
 			method: 'GET',
 			beforeSend: function (){
 				$('#listing').addClass('d-flex flex-column align-items-center justify-content-center');
@@ -138,29 +160,29 @@ jQuery(document).ready(function($){
 		map = new google.maps.Map(document.getElementById("map"), {
 			zoom: zoom,
 			minZoom: 4,
-			mapId: 'b8ac68d09a125f13'
+			mapId: 'b8ac68d09a125f13',
+			zoomControl: false,
+			mapTypeControl: false,
+			streetViewControl: false
 		});
 
-		initialLocation = new google.maps.LatLng(defaultCoord.lat, defaultCoord.lon);
+		initialLocation = new google.maps.LatLng(Coord.lat, Coord.lon);
 		map.setCenter(initialLocation);
 
-		navigator.permissions.query({ name: 'geolocation' }).then(data=>{
-			if(data.state === 'granted'){
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function (position) {
-						initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-						map.setCenter(initialLocation);
-						zoom = 15;
-						defaultCoord.lat = position.coords.latitude
-						defaultCoord.lon = position.coords.longitude
-						map.setZoom(zoom);
-						get_events(position.coords.latitude, position.coords.longitude, zoom);
-					});
-				}
-			}else{
-				get_events(defaultCoord.lat, defaultCoord.lon, zoom)
-			}
-		})
+
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function (position) {
+				initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				map.setCenter(initialLocation);
+				zoom = 15;
+				Coord.lat = position.coords.latitude
+				Coord.lon = position.coords.longitude
+				map.setZoom(zoom);
+				get_events(position.coords.latitude, position.coords.longitude, zoom);
+			}, function (data){
+				get_events(Coord.lat, Coord.lon, zoom)
+			});
+		}
 
 		// if (navigator.geolocation) {
 		// 	navigator.geolocation.getCurrentPosition(function (position) {
@@ -179,6 +201,9 @@ jQuery(document).ready(function($){
 
 		google.maps.event.addListener(map, 'dragend', function () {
 			// console.log(this.getCenter().lat(), this.getCenter().lng(), this.zoom)
+			Coord.lat = this.getCenter().lat();
+			Coord.lon = this.getCenter().lng();
+			zoom = this.zoom;
 			deleteMarkers()
 			get_events(this.getCenter().lat(), this.getCenter().lng(), this.zoom)
 		});

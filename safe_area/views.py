@@ -24,13 +24,13 @@ def contact_us(request):
 
 
 # def create_random_events(request, number):
-# 	# Event.objects.all().delete()
-# 	types = ('murder', 'accident', 'fight', 'theft', 'shooting', 'other',)
-# 	for i in range(number):
-# 		Event.objects.create(
-# 			type_of_situation=random.choice(types),
-# 			description="Bacon ipsum dolor amet pig chuck alcatra beef short loin beef",
-# 			lat=random.uniform(-80, 80),
-# 			lon=random.uniform(-170, 170)
-# 		)
+# 	Event.objects.all().delete()
+# 	# types = ('murder', 'accident', 'fight', 'theft', 'shooting', 'other',)
+# 	# for i in range(number):
+# 	# 	Event.objects.create(
+# 	# 		type_of_situation=random.choice(types),
+# 	# 		description="Bacon ipsum dolor amet pig chuck alcatra beef short loin beef",
+# 	# 		lat=random.uniform(-80, 80),
+# 	# 		lon=random.uniform(-170, 170)
+# 	# 	)
 # 	return HttpResponse("OK")

@@ -1,0 +1,85 @@
+{% load i18n %}
+<div class="filter position-absolute bg-dark">
+    <div class="row" id="datepicker">
+        <div class="input-daterange input-group text-light d-flex flex-column align-items-center" id="datepicker">
+            <input type="text" class="input-sm form-control w-100 text-light bg-dark" name="start" autocomplete="off" value=""/>
+            <span class="input-group-addon">to</span>
+            <input type="text" class="input-sm form-control w-100 text-light bg-dark" name="end" autocomplete="off" value=""/>
+        </div>
+    </div>
+    <div class="types d-flex flex-column flex-wrap text-light">
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="murder">
+            <label class="form-check-label" for="murder">
+                <span class="type murder"></span>
+                {% trans 'Murder' %}
+            </label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="accident">
+            <label class="form-check-label" for="accident">
+                <span class="type accident"></span>
+                {% trans 'Accident' %}
+            </label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="fight">
+            <label class="form-check-label" for="fight">
+                <span class="type fight"></span>
+                {% trans 'Fight' %}
+            </label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="theft">
+            <label class="form-check-label" for="theft">
+                <span class="type theft"></span>
+                {% trans 'Theft' %}
+            </label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="shooting">
+            <label class="form-check-label" for="shooting">
+                <span class="type shooting"></span>
+                {% trans 'Shooting' %}
+            </label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="other">
+            <label class="form-check-label" for="other">
+                <span class="type other"></span>
+                {% trans 'Other' %}
+            </label>
+        </div>
+    </div>
+    <div class="btn btn-sm w-100 btn-outline-danger close-filter-btn">Close</div>
+</div>
+<script>
+    $( function() {
+        const userLocale =
+            navigator.languages && navigator.languages.length
+                ? navigator.languages[0]
+                : navigator.language;
+
+        var today = new Date();
+        var yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        var strDateToday = 'Y-m-d'
+            .replace('Y', today.getFullYear())
+            .replace('m', today.getMonth()+1 >= 10 ? today.getMonth()+1 : "0"+(today.getMonth()+1))
+            .replace('d', today.getDate() >= 10 ? today.getDate() : "0"+today.getDate());
+        var strDateYesterday = 'Y-m-d'
+            .replace('Y', yesterday.getFullYear())
+            .replace('m', yesterday.getMonth()+1 >= 10 ? yesterday.getMonth()+1 : "0"+(yesterday.getMonth()+1))
+            .replace('d', yesterday.getDate() >= 10 ? yesterday.getDate() : "0"+yesterday.getDate());
+        $('input[name="start"]').val(strDateYesterday)
+        $('input[name="end"]').val(strDateToday)
+        $('#datepicker .input-daterange').datepicker({
+            format: "yyyy-mm-dd",
+            todayBtn: true,
+            language: userLocale,
+            autoclose: true,
+            todayHighlight: true,
+        });
+    } );
+</script>
