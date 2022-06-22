@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-20 22:09+0300\n"
+"POT-Creation-Date: 2022-06-22 22:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,41 +46,53 @@ msgstr "Texto"
 msgid "Send"
 msgstr "Enviar"
 
-#: templates/safe_area/index.html:44
-msgid "Listing"
-msgstr "Listado"
+#: templates/safe_area/filter.html:6
+msgid "To"
+msgstr "A"
 
-#: templates/safe_area/index.html:48
-msgid "Map"
-msgstr "Mapa"
-
-#: templates/safe_area/index.html:49
-msgid "New Event"
-msgstr "Nuevo evento"
-
-#: templates/safe_area/new_notify.html:11
+#: templates/safe_area/filter.html:15 templates/safe_area/new_notify.html:11
 msgid "Murder"
 msgstr "Asesinato"
 
-#: templates/safe_area/new_notify.html:17
+#: templates/safe_area/filter.html:22 templates/safe_area/new_notify.html:17
 msgid "Accident"
 msgstr "Accidente"
 
-#: templates/safe_area/new_notify.html:23
+#: templates/safe_area/filter.html:29 templates/safe_area/new_notify.html:23
 msgid "Fight"
 msgstr "Lucha"
 
-#: templates/safe_area/new_notify.html:29
+#: templates/safe_area/filter.html:36 templates/safe_area/new_notify.html:29
 msgid "Theft"
 msgstr "Robo"
 
-#: templates/safe_area/new_notify.html:35
+#: templates/safe_area/filter.html:43 templates/safe_area/new_notify.html:35
 msgid "Shooting"
 msgstr "Tiroteo"
 
-#: templates/safe_area/new_notify.html:41
+#: templates/safe_area/filter.html:50 templates/safe_area/new_notify.html:41
 msgid "Other"
 msgstr "Otra"
+
+#: templates/safe_area/filter.html:54
+msgid "Close"
+msgstr "Cerrar"
+
+#: templates/safe_area/index.html:58
+msgid "Listing"
+msgstr "Listado"
+
+#: templates/safe_area/index.html:59 templates/safe_area/index.html:66
+msgid "Filter"
+msgstr "Filtrar"
+
+#: templates/safe_area/index.html:64
+msgid "Map"
+msgstr "Mapa"
+
+#: templates/safe_area/index.html:65
+msgid "New Event"
+msgstr "Nuevo evento"
 
 #: templates/safe_area/new_notify.html:45
 msgid "Describe situation"
@@ -102,10 +114,11 @@ msgid ""
 "Gmail or using the contact form on the site.\n"
 "\tThank you for your visit! Take care of yourself!"
 msgstr ""
-"¡Bienvenido a nuestro sitio web!"
-"El sitio está destinado a todos los que se preocupan por su seguridad. "
-"En el sitio puede familiarizarse con un mapa interactivo que muestra eventos recientes y la situación que lo rodea. "
-"También puede crear un evento y así advertir a otros sobre un peligro o informar sobre una situación. Todos los eventos "
-"que cree son completamente anónimos."
-"Para cualquier consulta, puedes contactarme a través de la red social Linkedin, Gmail o mediante el formulario de contacto del sitio."
+"¡Bienvenido a nuestro sitio web!El sitio está destinado a todos los que se "
+"preocupan por su seguridad. En el sitio puede familiarizarse con un mapa "
+"interactivo que muestra eventos recientes y la situación que lo rodea. "
+"También puede crear un evento y así advertir a otros sobre un peligro o "
+"informar sobre una situación. Todos los eventos que cree son completamente "
+"anónimos.Para cualquier consulta, puedes contactarme a través de la red "
+"social Linkedin, Gmail o mediante el formulario de contacto del sitio."
 "¡Gracias por tu visita! ¡Cuídate!"

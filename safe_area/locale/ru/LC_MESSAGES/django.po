@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-20 22:08+0300\n"
+"POT-Creation-Date: 2022-06-22 22:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,41 +48,53 @@ msgstr "Текст"
 msgid "Send"
 msgstr "Отправить"
 
-#: templates/safe_area/index.html:44
-msgid "Listing"
-msgstr "Список"
+#: templates/safe_area/filter.html:6
+msgid "To"
+msgstr "К"
 
-#: templates/safe_area/index.html:48
-msgid "Map"
-msgstr "Карта"
-
-#: templates/safe_area/index.html:49
-msgid "New Event"
-msgstr "Новое событие"
-
-#: templates/safe_area/new_notify.html:11
+#: templates/safe_area/filter.html:15 templates/safe_area/new_notify.html:11
 msgid "Murder"
 msgstr "Убийство"
 
-#: templates/safe_area/new_notify.html:17
+#: templates/safe_area/filter.html:22 templates/safe_area/new_notify.html:17
 msgid "Accident"
 msgstr "Авария"
 
-#: templates/safe_area/new_notify.html:23
+#: templates/safe_area/filter.html:29 templates/safe_area/new_notify.html:23
 msgid "Fight"
 msgstr "Драка"
 
-#: templates/safe_area/new_notify.html:29
+#: templates/safe_area/filter.html:36 templates/safe_area/new_notify.html:29
 msgid "Theft"
 msgstr "Воровство"
 
-#: templates/safe_area/new_notify.html:35
+#: templates/safe_area/filter.html:43 templates/safe_area/new_notify.html:35
 msgid "Shooting"
 msgstr "Стрельба"
 
-#: templates/safe_area/new_notify.html:41
+#: templates/safe_area/filter.html:50 templates/safe_area/new_notify.html:41
 msgid "Other"
 msgstr "Другое"
+
+#: templates/safe_area/filter.html:54
+msgid "Close"
+msgstr "Закрыть"
+
+#: templates/safe_area/index.html:58
+msgid "Listing"
+msgstr "Список"
+
+#: templates/safe_area/index.html:59 templates/safe_area/index.html:66
+msgid "Filter"
+msgstr "Фильтр"
+
+#: templates/safe_area/index.html:64
+msgid "Map"
+msgstr "Карта"
+
+#: templates/safe_area/index.html:65
+msgid "New Event"
+msgstr "Новое событие"
 
 #: templates/safe_area/new_notify.html:45
 msgid "Describe situation"
@@ -105,9 +117,11 @@ msgid ""
 "\tThank you for your visit! Take care of yourself!"
 msgstr ""
 "Добро пожаловать на наш сайт!\n"
-"\tСайт предназначен для всех кто заботится о своей безопасности. "
-"На сайте вы можете ознакомится с интерактивной картой на которой отображены недавние "
-"события и обстановка вокруг вас. Вы также можете создать событие и тем самым предупредить остальных "
-"об опасности или информировать о какой-то ситуации. Все события которые вы создаете полностью анонимные.\n"
-"\tПо любым вопросам вы можете связаться со мной  с помощью социальной сети Linkedin, почте Gmail или используя контактную форму на сайте.\n"
+"\tСайт предназначен для всех кто заботится о своей безопасности. На сайте вы "
+"можете ознакомится с интерактивной картой на которой отображены недавние "
+"события и обстановка вокруг вас. Вы также можете создать событие и тем самым "
+"предупредить остальных об опасности или информировать о какой-то ситуации. "
+"Все события которые вы создаете полностью анонимные.\n"
+"\tПо любым вопросам вы можете связаться со мной  с помощью социальной сети "
+"Linkedin, почте Gmail или используя контактную форму на сайте.\n"
 "\tСпасибо за ваш визит! Берегите себя!"

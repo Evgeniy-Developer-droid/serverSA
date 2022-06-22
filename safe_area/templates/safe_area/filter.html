@@ -3,7 +3,7 @@
     <div class="row" id="datepicker">
         <div class="input-daterange input-group text-light d-flex flex-column align-items-center" id="datepicker">
             <input type="text" class="input-sm form-control w-100 text-light bg-dark" name="start" autocomplete="off" value=""/>
-            <span class="input-group-addon">to</span>
+            <span class="input-group-addon">{% trans 'To' %}</span>
             <input type="text" class="input-sm form-control w-100 text-light bg-dark" name="end" autocomplete="off" value=""/>
         </div>
     </div>
@@ -51,7 +51,7 @@
             </label>
         </div>
     </div>
-    <div class="btn btn-sm w-100 btn-outline-danger close-filter-btn">Close</div>
+    <div class="btn btn-sm w-100 btn-outline-danger close-filter-btn">{% trans 'Close' %}</div>
 </div>
 <script>
     $( function() {
